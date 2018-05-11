@@ -1,0 +1,14 @@
+allprojects {
+    repositories {
+        maven { url 'https://maven.google.com' }
+    }
+}
+
+configurations.all {
+  resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+    // Pin the support library version so that all libraries use the same one
+      if (details.getRequested().getGroup() == 'com.android.support') {
+        details.useVersion('25.0.1')
+      }
+    }
+}
